@@ -1,36 +1,75 @@
 # CrawlPay SDK
 
-Monetize your website for AI crawlers via **x402** payments on **Arc Testnet**. When AI bots (GPTBot, ClaudeBot, PerplexityBot, etc.) request your content, they receive HTTP `402 Payment Required` and must pay **$0.001 USDC** to your wallet.
+Charge AI bots $0.001 USDC per page. Two lines of code.
+
+GPTBot, ClaudeBot, PerplexityBot crawl your site constantly. They read your content, train models on it, and pay you nothing. CrawlPay fixes that - bots that handle HTTP correctly pay via x402 on Arc, the rest pass through untouched.
 
 ## Install
 
 ```bash
-npm install github:divergenttt/CrawlPay-sdk
+npm install @crawlpay/sdk
 ```
 
-## Quick start (Next.js)
+## Quick start
 
 Add to `middleware.ts`:
 
+## Next.js
+
 ```ts
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
-import { crawlpay } from "@crawlpay/sdk";
+import { crawlpay } from "@crawlpay/sdk"
+import { NextResponse } from "next/server"
 
-const paywall = crawlpay({ wallet: "0xYourWalletAddress" });
+const paywall = crawlpay({ wallet: "0xYourWallet" })
 
-export function middleware(request: NextRequest) {
-  return paywall(request) ?? NextResponse.next();
+export function middleware(request) {
+  return paywall(request) ?? NextResponse.next()
 }
+```
+
+## Express
+
+```ts
+import { crawlpayExpress } from "@crawlpay/sdk/express"
+import express from "express"
+
+const app = express()
+app.use(crawlpayExpress({ wallet: "0xYourWallet" }))
+```
+
+## Cloudflare Workers
+
+```ts
+import { crawlpayCloudflare } from "@crawlpay/sdk/cloudflare"
+
+const paywall = crawlpayCloudflare({ wallet: "0xYourWallet" })
+
+export default {
+  async fetch(request, env, ctx) {
+    return paywall.fetch(request) ?? new Response("Hello")
+  }
+}
+```
+
+## Vault Mode (Story CDR)
+
+Private encrypted datasets - content that doesn't exist in plaintext anywhere. Bots pay, Story Protocol decrypts.
+
+```ts
+crawlpay({
+  wallet: "0xYourWallet",
+  vault: process.env.CDR_VAULT_UUID
+})
 ```
 
 ## Configuration
 
 | Option   | Required | Default        | Description                    |
 | -------- | -------- | -------------- | ------------------------------ |
-| `wallet` | Yes      | —              | Your Arc wallet address        |
+| `wallet` | Yes      | -              | Your Arc wallet address        |
 | `price`  | No       | `"0.001"`      | Price in USDC                  |
 | `network`| No       | `"arc-testnet"`| Payment network                |
+| `vault`  | No       | -              | Story CDR vault UUID           |
 
 ## Supported AI bots
 
@@ -48,12 +87,9 @@ export function middleware(request: NextRequest) {
 | FacebookBot       | Meta        |
 | Applebot-Extended | Apple       |
 
-## Dashboard
+## Links
 
-Track payments and configure your site at:
-
-**[crawl-pay.vercel.app/dashboard](https://crawl-pay.vercel.app/dashboard)**
-
-## License
-
-MIT
+- **Demo:** [crawl-pay.com](https://crawl-pay.com)
+- **Dashboard:** [crawl-pay.com/dashboard](https://crawl-pay.com/dashboard)
+- **GitHub:** [divergenttt/CrawlPay](https://github.com/divergenttt/CrawlPay)
+- **License:** MIT
