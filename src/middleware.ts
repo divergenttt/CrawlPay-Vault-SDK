@@ -4,6 +4,10 @@ export interface CrawlPayConfig {
   wallet: string;
   price?: string;
   network?: string;
+  vault?: string;
+  paths?: {
+    [pattern: string]: string;
+  };
 }
 
 const DEFAULT_PRICE = "0.001";
@@ -14,8 +18,32 @@ function hasPaymentSignature(request: Request): boolean {
   return request.headers.get("payment-signature") !== null;
 }
 
+function getPriceForPath(pathname: string, config: CrawlPayConfig): string {
+  const defaultPrice = config.price ?? DEFAULT_PRICE;
+  const pathPricing = config.paths;
+
+  if (!pathPricing) {
+    return defaultPrice;
+  }
+
+  for (const [pattern, price] of Object.entries(pathPricing)) {
+    if (pattern.endsWith("/*")) {
+      const prefix = pattern.slice(0, -1);
+      if (pathname.startsWith(prefix)) {
+        return price;
+      }
+      continue;
+    }
+
+    if (pathname === pattern) {
+      return price;
+    }
+  }
+
+  return defaultPrice;
+}
+
 export function crawlpay(config: CrawlPayConfig) {
-  const price = config.price ?? DEFAULT_PRICE;
   const network = config.network ?? DEFAULT_NETWORK;
 
   return (request: Request): Response | null => {
@@ -30,11 +58,13 @@ export function crawlpay(config: CrawlPayConfig) {
     }
 
     const bot = getBotName(userAgent) ?? "Unknown Bot";
+    const pathname = new URL(request.url).pathname;
+    const price = getPriceForPath(pathname, config);
 
     const body = {
       error: "payment_required",
       message:
-        "This content requires payment via x402 protocol. Pay $0.001 USDC to access.",
+        `This content requires payment via x402 protocol. Pay $${price} USDC to access.`,
       bot,
       wallet: config.wallet,
       price,

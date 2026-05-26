@@ -65,9 +65,24 @@ crawlpay({
 | Option   | Required | Default        | Description                    |
 | -------- | -------- | -------------- | ------------------------------ |
 | `wallet` | Yes      | -              | Your Arc wallet address        |
-| `price`  | No       | `"0.001"`      | Price in USDC                  |
+| `price`  | No       | `"0.001"`      | Default price in USDC          |
+| `paths`  | No       | -              | Per-path prices via patterns   |
 | `network`| No       | `"arcTestnet"` | Payment network                |
 | `vault`  | No       | -              | Story CDR vault UUID           |
+
+### Per-path pricing
+
+```ts
+crawlpay({
+  wallet: "0xYourWallet",
+  price: "0.001", // default for all pages
+  paths: {
+    "/premium/*": "0.01", // 10x for premium content
+    "/api/*": "0.005", // 5x for API endpoints
+    "/vault/*": "0.001", // CDR vault pages
+  },
+})
+```
 
 ## Supported AI bots
 
