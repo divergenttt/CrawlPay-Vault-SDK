@@ -1,0 +1,35 @@
+{
+  "name": "@crawlpay/sdk",
+  "version": "1.0.0",
+  "description": "Monetize your site for AI crawlers via x402 payments on Arc Testnet",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js",
+    "./express": "./dist/adapters/express.js",
+    "./cloudflare": "./dist/adapters/cloudflare.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "crawlpay",
+    "x402",
+    "ai-bots",
+    "monetization",
+    "arc",
+    "nanopayments"
+  ],
+  "author": "divergenttt",
+  "license": "MIT",
+  "type": "commonjs",
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^25.8.0",
+    "typescript": "^6.0.3"
+  }
+}
