@@ -12,9 +12,7 @@ npm install @crawlpay/sdk
 
 ## Quick start
 
-Add to `middleware.ts`:
-
-## Next.js
+### Next.js
 
 ```ts
 import { crawlpay } from "@crawlpay/sdk"
@@ -27,7 +25,7 @@ export function middleware(request) {
 }
 ```
 
-## Express
+### Express
 
 ```ts
 import { crawlpayExpress } from "@crawlpay/sdk/express"
@@ -37,7 +35,7 @@ const app = express()
 app.use(crawlpayExpress({ wallet: "0xYourWallet" }))
 ```
 
-## Cloudflare Workers
+### Cloudflare Workers
 
 ```ts
 import { crawlpayCloudflare } from "@crawlpay/sdk/cloudflare"
@@ -51,7 +49,7 @@ export default {
 }
 ```
 
-## Vault Mode (Story CDR)
+### Vault Mode (Story CDR)
 
 Private encrypted datasets - content that doesn't exist in plaintext anywhere. Bots pay, Story Protocol decrypts.
 
@@ -68,7 +66,7 @@ crawlpay({
 | -------- | -------- | -------------- | ------------------------------ |
 | `wallet` | Yes      | -              | Your Arc wallet address        |
 | `price`  | No       | `"0.001"`      | Price in USDC                  |
-| `network`| No       | `"arc-testnet"`| Payment network                |
+| `network`| No       | `"arcTestnet"` | Payment network                |
 | `vault`  | No       | -              | Story CDR vault UUID           |
 
 ## Supported AI bots
