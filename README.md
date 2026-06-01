@@ -104,5 +104,6 @@ crawlpay({
 
 - **Demo:** [crawl-pay.com](https://crawl-pay.com)
 - **Dashboard:** [crawl-pay.com/dashboard](https://crawl-pay.com/dashboard)
-- **GitHub:** [divergenttt/CrawlPay](https://github.com/divergenttt/CrawlPay)
+- **GitHub:** [divergenttt/CrawlPay-Vault-SDK](https://github.com/divergenttt/CrawlPay-Vault-SDK)
+- **App:** [divergenttt/CrawlPay-Vault](https://github.com/divergenttt/CrawlPay-Vault)
 - **License:** MIT
