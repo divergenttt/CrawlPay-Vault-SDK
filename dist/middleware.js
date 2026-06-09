@@ -8,6 +8,8 @@ const NETWORK_CHAIN_IDS = {
     base: 8453,
     polygon: 137,
 };
+const BOTH_NETWORKS = "base,polygon";
+const BOTH_CHAIN_IDS = "8453,137";
 function hasPaymentSignature(request) {
     // Headers.get() matches names case-insensitively (payment-signature / PAYMENT-SIGNATURE)
     return request.headers.get("payment-signature") !== null;
@@ -34,7 +36,8 @@ function getPriceForPath(pathname, config) {
 }
 function crawlpay(config) {
     const network = config.network ?? DEFAULT_NETWORK;
-    const chainId = NETWORK_CHAIN_IDS[network];
+    const paymentNetwork = network === "both" ? BOTH_NETWORKS : network;
+    const paymentChainId = network === "both" ? BOTH_CHAIN_IDS : String(NETWORK_CHAIN_IDS[network]);
     return (request) => {
         const userAgent = request.headers.get("user-agent") ?? "";
         if (!(0, detector_1.isAIBot)(userAgent)) {
@@ -58,10 +61,10 @@ function crawlpay(config) {
             status: 402,
             headers: {
                 "Content-Type": "application/json",
-                "X-Payment-Required": `amount=${price};currency=USDC;network=${network};chainId=${chainId}`,
+                "X-Payment-Required": `amount=${price};currency=USDC;network=${paymentNetwork};chainId=${paymentChainId}`,
                 "X-Payment-Wallet": config.wallet,
-                "X-Payment-Network": network,
-                "X-Payment-Chain-Id": String(chainId),
+                "X-Payment-Network": paymentNetwork,
+                "X-Payment-Chain-Id": paymentChainId,
                 "X-CrawlPay": "1.0",
             },
         });

@@ -1,10 +1,14 @@
-import type { Request, Response, NextFunction } from "express";
+import type {
+  Request as ExpressRequest,
+  Response,
+  NextFunction,
+} from "express";
 import { crawlpay, type CrawlPayConfig } from "../middleware";
 
 export function crawlpayExpress(config: CrawlPayConfig) {
   const handler = crawlpay(config);
 
-  return async (req: Request, res: Response, next: NextFunction) => {
+  return async (req: ExpressRequest, res: Response, next: NextFunction) => {
     const protocol = req.protocol || "http";
     const host = req.get("host") || "localhost";
     const url = `${protocol}://${host}${req.originalUrl}`;

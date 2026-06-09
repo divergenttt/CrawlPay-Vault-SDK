@@ -1,6 +1,6 @@
 {
   "name": "@crawlpay/sdk",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Monetize your site for AI crawlers via x402 payments on Base and Polygon",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -21,8 +21,10 @@
     "x402",
     "ai-bots",
     "monetization",
-    "arc",
-    "nanopayments"
+    "polygon",
+    "base",
+    "usdc",
+    "micropayments"
   ],
   "author": "divergenttt",
   "license": "MIT",

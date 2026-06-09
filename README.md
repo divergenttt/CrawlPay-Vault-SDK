@@ -62,13 +62,13 @@ crawlpay({
 
 ## Configuration
 
-| Option   | Required | Default        | Description                    |
-| -------- | -------- | -------------- | ------------------------------ |
-| `wallet` | Yes      | -              | Your Arc wallet address        |
-| `price`  | No       | `"0.001"`      | Default price in USDC          |
-| `paths`  | No       | -              | Per-path prices via patterns   |
+| Option   | Required | Default        | Description                           |
+| -------- | -------- | -------------- | ------------------------------------- |
+| `wallet` | Yes      | -              | Your Arc wallet address               |
+| `price`  | No       | `"0.001"`      | Default price in USDC                 |
+| `paths`  | No       | -              | Per-path prices via patterns          |
 | `network`| No       | `"base"`       | Payment network (`base` or `polygon`) |
-| `vault`  | No       | -              | Story CDR vault UUID           |
+| `vault`  | No       | -              | Story CDR vault UUID                  |
 
 ### Per-path pricing
 

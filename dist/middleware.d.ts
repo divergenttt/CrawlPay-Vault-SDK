@@ -1,7 +1,7 @@
 export interface CrawlPayConfig {
     wallet: string;
     price?: string;
-    network?: "base" | "polygon";
+    network?: "base" | "polygon" | "both";
     vault?: string;
     paths?: {
         [pattern: string]: string;
