@@ -2,7 +2,7 @@
 
 Charge AI bots $0.001 USDC per page. Two lines of code.
 
-GPTBot, ClaudeBot, PerplexityBot crawl your site constantly. They read your content, train models on it, and pay you nothing. CrawlPay fixes that - bots that handle HTTP correctly pay via x402 on Arc, the rest pass through untouched.
+GPTBot, ClaudeBot, PerplexityBot crawl your site constantly. They read your content, train models on it, and pay you nothing. CrawlPay fixes that - bots that handle HTTP correctly pay via x402, the rest pass through untouched.
 
 ## Install
 
@@ -67,7 +67,7 @@ crawlpay({
 | `wallet` | Yes      | -              | Your Arc wallet address        |
 | `price`  | No       | `"0.001"`      | Default price in USDC          |
 | `paths`  | No       | -              | Per-path prices via patterns   |
-| `network`| No       | `"arcTestnet"` | Payment network                |
+| `network`| No       | `"base"`       | Payment network (`base` or `polygon`) |
 | `vault`  | No       | -              | Story CDR vault UUID           |
 
 ### Per-path pricing

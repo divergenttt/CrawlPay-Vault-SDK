@@ -1,7 +1,7 @@
 {
   "name": "@crawlpay/sdk",
   "version": "1.0.0",
-  "description": "Monetize your site for AI crawlers via x402 payments on Arc Testnet",
+  "description": "Monetize your site for AI crawlers via x402 payments on Base and Polygon",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
