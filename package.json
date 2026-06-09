@@ -1,6 +1,6 @@
 {
   "name": "@crawlpay/sdk",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Monetize your site for AI crawlers via x402 payments on Base and Polygon",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
