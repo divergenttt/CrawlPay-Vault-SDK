@@ -1,12 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isAIBot = exports.getBotName = exports.AI_BOTS = exports.crawlpayCloudflare = exports.crawlpayExpress = exports.crawlpay = void 0;
+exports.isAIBot = exports.getBotName = exports.AI_BOTS = exports.crawlpayCheck = exports.crawlpayCloudflare = exports.crawlpayExpress = exports.crawlpay = void 0;
 var middleware_1 = require("./middleware");
 Object.defineProperty(exports, "crawlpay", { enumerable: true, get: function () { return middleware_1.crawlpay; } });
 var express_1 = require("./adapters/express");
 Object.defineProperty(exports, "crawlpayExpress", { enumerable: true, get: function () { return express_1.crawlpayExpress; } });
 var cloudflare_1 = require("./adapters/cloudflare");
 Object.defineProperty(exports, "crawlpayCloudflare", { enumerable: true, get: function () { return cloudflare_1.crawlpayCloudflare; } });
+Object.defineProperty(exports, "crawlpayCheck", { enumerable: true, get: function () { return cloudflare_1.crawlpayCheck; } });
 var detector_1 = require("./detector");
 Object.defineProperty(exports, "AI_BOTS", { enumerable: true, get: function () { return detector_1.AI_BOTS; } });
 Object.defineProperty(exports, "getBotName", { enumerable: true, get: function () { return detector_1.getBotName; } });

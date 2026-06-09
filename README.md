@@ -44,7 +44,24 @@ const paywall = crawlpayCloudflare({ wallet: "0xYourWallet" })
 
 export default {
   async fetch(request, env, ctx) {
-    return paywall.fetch(request) ?? new Response("Hello")
+    // Returns 402 for unpaid bots; forwards humans and paid bots to origin
+    return paywall.fetch(request)
+  }
+}
+```
+
+For manual control (you handle forwarding yourself):
+
+```ts
+import { crawlpayCheck } from "@crawlpay/sdk/cloudflare"
+
+const check = crawlpayCheck({ wallet: "0xYourWallet" })
+
+export default {
+  async fetch(request) {
+    const blocked = check(request)
+    if (blocked) return blocked
+    return fetch(request)
   }
 }
 ```
